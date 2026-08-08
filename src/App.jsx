@@ -1,0 +1,44 @@
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar.jsx";
+import Home from "./components/Home.jsx";
+import About from "./components/About.jsx";
+import NAFO from "./components/NAFO.jsx";
+import Notices from "./components/Notices.jsx";
+import NoticeDetail from "./components/NoticeDetail.jsx";
+import Contact from "./components/Contact.jsx";
+import Footer from "./components/Footer.jsx";
+import RegistrationNoticeProvider from "./components/RegistrationNotice.jsx";
+
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location]);
+
+  return null;
+}
+
+export default function App() {
+  return (
+    <RegistrationNoticeProvider>
+      <div className="flex min-h-screen flex-col">
+        <ScrollToTop />
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/nafo" element={<NAFO />} />
+            <Route path="/notices" element={<Notices />} />
+            <Route path="/notices/:id" element={<NoticeDetail />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </RegistrationNoticeProvider>
+  );
+}
