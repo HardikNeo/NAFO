@@ -63,4 +63,6 @@ jobs:
             msg=$(tail -n 25 rules-deploy.log | tr '\n' '~' | tr -d '%' | cut -c1-900)
             echo "::warning title=Firestore rules not deployed::${msg}"
           fi
-          exit $code
+          # Never fail the job: Hosting is the critical deploy. The warning above
+          # (plus the once-only role grant) is what enables automatic rule deploys.
+          exit 0
