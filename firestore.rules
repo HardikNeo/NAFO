@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Anyone can read notices (they're public content).
+    match /notices/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    // Anyone can submit a contact message, but only you can read them.
+    match /messages/{id} {
+      allow read: if false;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+  }
+}

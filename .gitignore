@@ -1,0 +1,9 @@
+node_modules
+.vite
+*.local
+.DS_Store
+.env
+dist
+.firebase
+firebase-debug.log
+.firebaserc
