@@ -62,6 +62,9 @@ jobs:
           if [ "$code" -ne 0 ]; then
             msg=$(tail -n 25 rules-deploy.log | tr '\n' '~' | tr -d '%' | cut -c1-900)
             echo "::warning title=Firestore rules not deployed::${msg}"
+          else
+            msg=$(tail -n 12 rules-deploy.log | tr '\n' '~' | tr -d '%' | cut -c1-700)
+            echo "::notice title=Firestore rules deployed by CI::${msg}"
           fi
           # Never fail the job: Hosting is the critical deploy. The warning above
           # (plus the once-only role grant) is what enables automatic rule deploys.
