@@ -42,4 +42,12 @@ jobs:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FINANCIAL_INITIATIVES_NEPAL }}
 
       - name: Deploy Firestore rules
-        run: npx firebase deploy --only firestore:rules --project financial-initiatives-nepal --non-interactive
+        run: |
+          set +e
+          npx firebase deploy --only firestore:rules --project financial-initiatives-nepal --non-interactive 2>&1 | tee rules-deploy.log
+          code=${PIPESTATUS[0]}
+          if [ "$code" -ne 0 ]; then
+            msg=$(tail -n 25 rules-deploy.log | tr '\n' '~' | tr -d '%' | cut -c1-900)
+            echo "::error title=Firestore rules deploy failed::${msg}"
+          fi
+          exit $code
