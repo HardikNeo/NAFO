@@ -17,6 +17,15 @@ jobs:
         with:
           node-version: 22
 
+      # Prints the service account that deploys for this repo (not sensitive).
+      # Grant it the "Firebase Rules Admin" role to enable automatic rule deploys.
+      - name: Show CI service account
+        env:
+          SA_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FINANCIAL_INITIATIVES_NEPAL }}
+        run: |
+          email=$(printf '%s' "$SA_JSON" | python3 -c "import sys,json; print(json.load(sys.stdin).get('client_email',''))" 2>/dev/null || true)
+          echo "::notice title=CI service account::${email:-unknown}"
+
       - name: Install dependencies
         run: npm ci
 
@@ -34,20 +43,24 @@ jobs:
           channelId: live
           projectId: financial-initiatives-nepal
 
-      # Deploy Firestore security rules so collections like `team` are readable.
-      # Runs after hosting so a permissions issue here can't block the site deploy.
+      # Deploy Firestore security rules (notices, messages, team) automatically.
+      # If the service account lacks the "Firebase Rules Admin" role this step
+      # warns instead of failing, so Hosting deploys are never blocked. Once the
+      # role is granted it deploys rules on every push with no further changes.
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
+        continue-on-error: true
         with:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FINANCIAL_INITIATIVES_NEPAL }}
 
       - name: Deploy Firestore rules
+        continue-on-error: true
         run: |
           set +e
           npx firebase deploy --only firestore:rules --project financial-initiatives-nepal --non-interactive 2>&1 | tee rules-deploy.log
           code=${PIPESTATUS[0]}
           if [ "$code" -ne 0 ]; then
             msg=$(tail -n 25 rules-deploy.log | tr '\n' '~' | tr -d '%' | cut -c1-900)
-            echo "::error title=Firestore rules deploy failed::${msg}"
+            echo "::warning title=Firestore rules not deployed::${msg}"
           fi
           exit $code
