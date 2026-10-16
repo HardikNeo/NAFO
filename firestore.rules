@@ -12,5 +12,10 @@ service cloud.firestore {
       allow create: if true;
       allow update, delete: if false;
     }
+    // Team members are public content (shown on the About page).
+    match /team/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
   }
 }
