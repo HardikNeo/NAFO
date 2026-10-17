@@ -17,5 +17,20 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+    // District pages: public content (the selected / waitlisted result lists).
+    // Add new district collection names to this list as districts are added.
+    match /{district}/{id} {
+      allow read: if district in [
+        "kathmandu",
+        "jumla",
+        "dolpa",
+        "jhapa",
+        "kailali",
+        "parsa",
+        "morang",
+        "kavre"
+      ];
+      allow write: if false;
+    }
   }
 }

@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
-import { getDistrict, getResults } from "../lib/progress.js";
+import { getDistrict, getResults, fetchDistrictResults } from "../lib/progress.js";
 
 const LABELS = {
   selected: "Selected",
@@ -9,12 +10,35 @@ const LABELS = {
 export default function ResultsList() {
   const { district, list } = useParams();
   const info = getDistrict(district);
+  const valid = Boolean(info) && Boolean(LABELS[list]);
+  const [rows, setRows] = useState(null);
 
-  if (!info || !LABELS[list]) {
+  useEffect(() => {
+    if (!valid) return undefined;
+
+    let active = true;
+    fetchDistrictResults(district).then((content) => {
+      if (active) setRows(content[list] ?? []);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [district, list, valid]);
+
+  if (!valid) {
     return <Navigate to="/nafo" replace />;
   }
 
-  const results = getResults(info.name, list);
+  // Real names from Firestore when available, otherwise placeholder rows.
+  const live = Array.isArray(rows) && rows.length > 0;
+  const results = live
+    ? rows.map((student, index) => ({
+        id: `${list}-${index + 1}`,
+        name: student.name,
+        school: student.school,
+      }))
+    : getResults(info.name, list);
 
   return (
     <section id="results-list" className="section-anchor bg-brand-cream">
@@ -66,14 +90,18 @@ export default function ResultsList() {
                       <p className="text-base font-extrabold text-brand-navy">
                         {item.name}
                       </p>
-                      <p className="mt-0.5 text-sm text-brand-navy/70">
-                        {item.school}
-                      </p>
+                      {item.school ? (
+                        <p className="mt-0.5 text-sm text-brand-navy/70">
+                          {item.school}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
-                    Placeholder
-                  </p>
+                  {live ? null : (
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
+                      Placeholder
+                    </p>
+                  )}
                 </li>
               ))}
             </ol>

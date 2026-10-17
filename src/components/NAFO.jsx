@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import { districts } from "../lib/progress.js";
+import { districts, getProgressImages } from "../lib/progress.js";
+
+const IMAGE_SLOTS = 2;
 
 export default function NAFO() {
+  const images = getProgressImages(IMAGE_SLOTS);
+
   return (
     <section id="nafo" className="section-anchor bg-brand-cream">
       <div className="mx-auto max-w-7xl px-4 pt-24 pb-20 sm:px-6 lg:px-8 lg:pt-32 lg:pb-24">
@@ -11,6 +15,37 @@ export default function NAFO() {
             Our Progress
           </h2>
         </header>
+
+        <div
+          className="reveal mt-14 grid gap-6 sm:grid-cols-2"
+          style={{ animationDelay: "100ms" }}
+        >
+          {Array.from({ length: IMAGE_SLOTS }, (_, index) => {
+            const image = images[index];
+
+            return (
+              <div
+                key={image?.url ?? `slot-${index}`}
+                className={`flex aspect-[4/3] items-center justify-center overflow-hidden border bg-white/60 ${
+                  image ? "border-brand-navy/15" : "border-dashed border-brand-navy/30"
+                }`}
+              >
+                {image ? (
+                  <img
+                    src={image.url}
+                    alt={`${image.district} — FIN`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-slate">
+                    Image coming soon
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
 
         <div className="reveal mt-20" style={{ animationDelay: "150ms" }}>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

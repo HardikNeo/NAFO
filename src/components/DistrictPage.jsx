@@ -1,15 +1,21 @@
 import { Link, Outlet, useParams, Navigate } from "react-router-dom";
-import { getDistrict } from "../lib/progress.js";
+import { getDistrict, getDistrictImages } from "../lib/progress.js";
+
+const PHOTO_SLOTS = 2;
 
 export default function DistrictPage() {
   const { district } = useParams();
   const info = getDistrict(district);
+  const images = getDistrictImages(district);
 
   if (!info) {
     return <Navigate to="/nafo" replace />;
   }
 
   const districtPath = `/nafo/${district}`;
+  const photos = images.length
+    ? images
+    : Array.from({ length: PHOTO_SLOTS }, () => null);
 
   return (
     <section id="district-detail" className="section-anchor bg-brand-cream">
@@ -63,15 +69,26 @@ export default function DistrictPage() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua.
             </p>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3].map((index) => (
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              {photos.map((url, index) => (
                 <div
-                  key={index}
-                  className="flex aspect-[4/3] items-center justify-center border border-dashed border-brand-navy/30 bg-white/60"
+                  key={url ?? `photo-${index}`}
+                  className={`flex aspect-[4/3] items-center justify-center overflow-hidden border bg-white/60 ${
+                    url ? "border-brand-navy/15" : "border-dashed border-brand-navy/30"
+                  }`}
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-slate">
-                    Photos coming soon
-                  </p>
+                  {url ? (
+                    <img
+                      src={url}
+                      alt={`${info.name} — FIN`}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-slate">
+                      Photos coming soon
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
