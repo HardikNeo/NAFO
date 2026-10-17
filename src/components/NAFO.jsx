@@ -6,7 +6,7 @@ export default function NAFO() {
     <section id="nafo" className="section-anchor bg-brand-cream">
       <div className="mx-auto max-w-7xl px-4 pt-24 pb-20 sm:px-6 lg:px-8 lg:pt-32 lg:pb-24">
         <header className="max-w-3xl reveal">
-          <span className="kicker">NAFO 2026</span>
+          <span className="kicker">FIN 2026</span>
           <h2 className="mt-8 text-4xl font-black tracking-tight text-brand-navy sm:text-5xl">
             Our Progress
           </h2>

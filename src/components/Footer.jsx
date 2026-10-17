@@ -7,7 +7,7 @@ const footerLinks = [
     links: [
       { label: "Home", to: "/" },
       { label: "About Us", to: "/about" },
-      { label: "NAFO", to: "/nafo" },
+      { label: "Results", to: "/nafo" },
       { label: "Notices", to: "/notices" },
       { label: "Contact Us", to: "/contact" },
     ],
@@ -18,7 +18,7 @@ function FooterLogo() {
   return (
     <img
       src={logo}
-      alt="National Accounting and Finance Olympiad logo"
+      alt="Financial Initiatives Nepal logo"
       className="h-12 w-12 shrink-0 object-cover"
     />
   );
@@ -33,9 +33,9 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <FooterLogo />
               <div className="leading-tight">
-                <p className="text-base font-extrabold text-white">NAFO</p>
+                <p className="text-base font-extrabold text-white">FIN</p>
                 <p className="mt-0.5 text-[10px] font-semibold tracking-[0.18em] text-brand-seafoam uppercase sm:text-xs">
-                  National Accounting &amp; Finance Olympiad
+                  Financial Initiatives Nepal
                 </p>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function Footer() {
 
         <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-8 sm:flex-row sm:items-center">
           <p className="text-xs text-white/60">
-            © {new Date().getFullYear()} NAFO. All rights reserved.
+            © {new Date().getFullYear()} FIN. All rights reserved.
           </p>
           <p className="text-xs text-white/60">
             Kathmandu, Nepal

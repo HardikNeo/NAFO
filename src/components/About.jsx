@@ -8,18 +8,30 @@ const pillars = [
     description: "",
     accent: "bg-brand-sienna",
     badge: "bg-brand-sienna text-white",
-    points: [],
+    points: [
+      "To educate the upcoming generation on topics of personal finance and set a framework for long-term financial security.",
+      "To give children from underprivileged backgrounds a chance to learn about financial literacy and help them create a better future for themselves.",
+      "To host a platform where the most dedicated and talented accounts and finance student get a chance to show their expertise and gain rewards.",
+    ],
   },
   {
     key: "vision",
     kicker: "Our Vision",
     title: "Our Vision",
-    description: "",
+    description: [
+      "To make Nepal a country where financially literate youth are empowered to make informed personal finance decisions independently, contributing to their long-term financial well-being and prosperity, as well as to the nation\u2019s overall prosperity.",
+      "To eradicate artificial and institutional barriers between the rich and the poor, the privileged and the underprivileged, and urban and rural youth.",
+    ],
     accent: "bg-brand-teal",
     badge: "bg-brand-teal text-white",
     points: [],
   },
 ];
+
+function toParagraphs(description) {
+  if (Array.isArray(description)) return description;
+  return description ? [description] : [];
+}
 
 export default function About() {
   return (
@@ -39,11 +51,14 @@ export default function About() {
                 <h3 className="mt-4 text-2xl font-extrabold text-brand-navy">
                   {pillar.title}
                 </h3>
-                {pillar.description ? (
-                  <p className="mt-4 leading-relaxed text-brand-navy/75">
-                    {pillar.description}
+                {toParagraphs(pillar.description).map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="mt-4 leading-relaxed text-brand-navy/75"
+                  >
+                    {paragraph}
                   </p>
-                ) : null}
+                ))}
 
                 {pillar.points.length > 0 ? (
                   <ul className="mt-8 divide-y divide-brand-navy/15 border-y border-brand-navy/15">

@@ -5,7 +5,7 @@ import logo from "../../images/logo.png";
 const navLinks = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
-  { label: "NAFO", to: "/nafo" },
+  { label: "Results", to: "/nafo" },
   { label: "Notices", to: "/notices" },
   { label: "Contact Us", to: "/contact" },
 ];
@@ -14,7 +14,7 @@ function Logo({ className = "" }) {
   return (
     <img
       src={logo}
-      alt="National Accounting and Finance Olympiad logo"
+      alt="Financial Initiatives Nepal logo"
       className={`shrink-0 object-cover ${className}`}
     />
   );
@@ -30,10 +30,10 @@ export default function Navbar() {
           <Logo className="aspect-square h-10 w-10" />
           <div className="leading-tight">
             <p className="text-base font-extrabold text-brand-navy sm:text-lg">
-              NAFO
+              FIN
             </p>
             <p className="text-[10px] font-semibold tracking-[0.18em] text-brand-sienna uppercase sm:text-xs">
-              National Accounting &amp; Finance Olympiad
+              Financial Initiatives Nepal
             </p>
           </div>
         </Link>

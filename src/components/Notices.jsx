@@ -42,7 +42,7 @@ export default function Notices() {
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-brand-navy/75">
             Stay up to date with registration deadlines, round announcements, results,
-            and everything happening across NAFO.
+            and everything happening across FIN.
           </p>
         </header>
 

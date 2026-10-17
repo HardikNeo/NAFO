@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import ResultsModal from "./ResultsModal.jsx";
 
 const timeline = [
   { label: "Pre Nationals", status: "completed" },
@@ -27,6 +29,7 @@ function getOverallStatus() {
 export default function Home() {
   const overall = getOverallStatus();
   const overallConfig = STATUS[overall];
+  const [resultsOpen, setResultsOpen] = useState(false);
 
   return (
     <section id="home" className="section-anchor bg-brand-cream">
@@ -36,13 +39,20 @@ export default function Home() {
             <span className="kicker">Nepal&apos;s first ever national finance olympiad</span>
 
             <h1 className="mt-8 text-5xl leading-[1.05] font-black tracking-tight text-brand-navy sm:text-6xl lg:text-7xl">
-              Nepal&apos;s first ever national finance olympiad
+              5 provinces, 10 districts, 300+ students
             </h1>
 
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">
               <Link to="/about" className="btn btn-outline">
-                About NAFO
+                About FIN
               </Link>
+              <button
+                type="button"
+                onClick={() => setResultsOpen(true)}
+                className="btn btn-primary"
+              >
+                Results
+              </button>
             </div>
           </div>
 
@@ -50,7 +60,7 @@ export default function Home() {
             <div className="rounded-lg border border-brand-navy/15 bg-white">
               <div className="flex items-center justify-between border-b border-brand-navy/15 px-8 py-6">
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-navy">
-                  NAFO 2026 Timeline
+                  FIN 2026 Timeline
                 </p>
                 {overall !== "tbd" && (
                   <span
@@ -110,12 +120,15 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-16">
             <p className="kicker lg:w-56">Our Mission in One Line</p>
             <p className="max-w-3xl text-2xl leading-snug font-semibold text-brand-navy lg:text-3xl">
-              To make financial confidence a rite of passage for every Nepali student —
-              one olympiad at a time.
+              Make financial literacy and accounting knowledge accessible to students
+              all over Nepal regardless of their ethnicity, financial status, and
+              privilege status.
             </p>
           </div>
         </div>
       </div>
+
+      {resultsOpen && <ResultsModal onClose={() => setResultsOpen(false)} />}
     </section>
   );
 }

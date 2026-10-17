@@ -22,16 +22,14 @@ export function getResultsList(key) {
 }
 
 export const districts = [
-  { slug: "kathmandu", name: "Kathmandu", province: "Bagmati" },
-  { slug: "lalitpur", name: "Lalitpur", province: "Bagmati" },
-  { slug: "bhaktapur", name: "Bhaktapur", province: "Bagmati" },
-  { slug: "kaski", name: "Kaski", province: "Gandaki" },
-  { slug: "chitwan", name: "Chitwan", province: "Bagmati" },
-  { slug: "morang", name: "Morang", province: "Koshi" },
-  { slug: "sunsari", name: "Sunsari", province: "Koshi" },
-  { slug: "rupandehi", name: "Rupandehi", province: "Lumbini" },
-  { slug: "banke", name: "Banke", province: "Lumbini" },
+  { slug: "kathmandu-valley", name: "Kathmandu Valley", province: "Bagmati" },
+  { slug: "jumla", name: "Jumla", province: "Karnali" },
+  { slug: "dolpa", name: "Dolpa", province: "Karnali" },
+  { slug: "jhapa", name: "Jhapa", province: "Koshi" },
   { slug: "kailali", name: "Kailali", province: "Sudurpashchim" },
+  { slug: "parsa", name: "Parsa", province: "Madhesh" },
+  { slug: "morang", name: "Morang", province: "Koshi" },
+  { slug: "kavre", name: "Kavre", province: "Bagmati" },
 ];
 
 export function getDistrict(slug) {

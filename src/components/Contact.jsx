@@ -118,7 +118,7 @@ export default function Contact() {
                     name="subject"
                     type="text"
                     required
-                    placeholder="e.g. NAFO registration enquiry"
+                    placeholder="e.g. FIN registration enquiry"
                     className={inputClasses}
                   />
                 </div>
@@ -185,7 +185,7 @@ export default function Contact() {
             <div className="rounded-lg border border-brand-navy/15 bg-brand-cream p-10">
               <h3 className="text-xl font-black text-brand-navy">Follow Us</h3>
               <p className="mt-3 text-sm text-brand-navy/70">
-                Follow NAFO on Instagram and LinkedIn for the latest updates.
+                Follow FIN on Instagram and LinkedIn for the latest updates.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 {socialLinks.map((social) => (

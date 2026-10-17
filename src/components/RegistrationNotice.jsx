@@ -42,12 +42,12 @@ export default function RegistrationNoticeProvider({ children }) {
             className="w-full max-w-md rounded-lg border border-brand-navy/15 bg-white p-10 text-center"
             onClick={(event) => event.stopPropagation()}
           >
-            <span className="kicker">NAFO 2026</span>
+            <span className="kicker">FIN 2026</span>
             <h3 className="mt-5 text-3xl font-black text-brand-navy">
               Registration Not Open
             </h3>
             <p className="mt-4 leading-relaxed text-brand-navy/75">
-              Registration for NAFO 2026 hasn&apos;t opened yet. We&apos;ll announce the
+              Registration for FIN 2026 hasn&apos;t opened yet. We&apos;ll announce the
               opening date here as soon as it&apos;s confirmed.
             </p>
             <button type="button" onClick={hide} className="btn btn-primary mt-8">

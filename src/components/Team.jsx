@@ -69,7 +69,7 @@ export default function Team() {
         <header className="max-w-3xl reveal">
           <span className="kicker">Our Team</span>
           <h2 className="mt-8 text-4xl font-black tracking-tight text-brand-navy sm:text-5xl">
-            The People Behind NAFO
+            The People Behind FIN
           </h2>
         </header>
 
