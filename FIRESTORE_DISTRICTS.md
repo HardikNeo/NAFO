@@ -29,8 +29,7 @@ includes them (they are bundled at build time).
 Where they appear:
 
 - District page (`/nafo/<district>`) "Photos" section: every photo in the folder.
-- **Our Progress** section: the first 2 photos across all districts, in district
-  order.
+  These are the only place photos appear.
 
 ## Result lists
 

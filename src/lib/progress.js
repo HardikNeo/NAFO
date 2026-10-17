@@ -120,18 +120,6 @@ export function getDistrictImages(slug) {
   return IMAGES_BY_DISTRICT.get(folder) ?? [];
 }
 
-// First `limit` photos across all districts, in district order.
-export function getProgressImages(limit = 2) {
-  return districts
-    .flatMap((district) =>
-      getDistrictImages(district.slug).map((url) => ({
-        district: district.name,
-        url,
-      })),
-    )
-    .slice(0, limit);
-}
-
 function toStudent(value, fallbackSchool = "") {
   if (typeof value === "string") {
     const name = value.trim();
