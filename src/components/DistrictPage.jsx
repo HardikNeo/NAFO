@@ -1,4 +1,4 @@
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, Outlet, useParams, Navigate } from "react-router-dom";
 import { getDistrict } from "../lib/progress.js";
 
 export default function DistrictPage() {
@@ -78,6 +78,9 @@ export default function DistrictPage() {
           </div>
         </div>
       </div>
+
+      {/* Results open as a nested route so they appear in a popup over this page. */}
+      <Outlet />
     </section>
   );
 }

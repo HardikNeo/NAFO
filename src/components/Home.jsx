@@ -60,7 +60,7 @@ export default function Home() {
             <div className="rounded-lg border border-brand-navy/15 bg-white">
               <div className="flex items-center justify-between border-b border-brand-navy/15 px-8 py-6">
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-navy">
-                  FIN 2026 Timeline
+                  NAFO 2025 Timeline
                 </p>
                 {overall !== "tbd" && (
                   <span

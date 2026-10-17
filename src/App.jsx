@@ -5,8 +5,10 @@ import Home from "./components/Home.jsx";
 import About from "./components/About.jsx";
 import NAFO from "./components/NAFO.jsx";
 import DistrictPage from "./components/DistrictPage.jsx";
-import Results from "./components/Results.jsx";
-import ResultsList from "./components/ResultsList.jsx";
+import {
+  DistrictResultsListModal,
+  DistrictResultsOverviewModal,
+} from "./components/DistrictResultsModal.jsx";
 import Notices from "./components/Notices.jsx";
 import NoticeDetail from "./components/NoticeDetail.jsx";
 import Contact from "./components/Contact.jsx";
@@ -32,9 +34,10 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/nafo" element={<NAFO />} />
-          <Route path="/nafo/:district" element={<DistrictPage />} />
-          <Route path="/nafo/:district/results" element={<Results />} />
-          <Route path="/nafo/:district/results/:list" element={<ResultsList />} />
+          <Route path="/nafo/:district" element={<DistrictPage />}>
+            <Route path="results" element={<DistrictResultsOverviewModal />} />
+            <Route path="results/:list" element={<DistrictResultsListModal />} />
+          </Route>
           <Route path="/notices" element={<Notices />} />
           <Route path="/notices/:id" element={<NoticeDetail />} />
           <Route path="/contact" element={<Contact />} />

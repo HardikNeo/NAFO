@@ -62,6 +62,12 @@
   .reveal {
     animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
+  /* Pages rendered inside the modal shell start with less top/bottom padding. */
+  .modal-body > section > div {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+  }
 }
 
 @keyframes fade-up {
