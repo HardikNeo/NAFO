@@ -63,10 +63,6 @@ export default function Contact() {
           <h2 className="mt-8 text-4xl font-black tracking-tight text-brand-navy sm:text-5xl">
             Let&apos;s Start a Conversation
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-brand-navy/75">
-            Whether you&apos;re a student, a school, or a partner organisation — reach out
-            and our team will get back to you shortly.
-          </p>
         </header>
 
         <div className="mx-auto mt-20 grid max-w-6xl gap-16 lg:grid-cols-5">

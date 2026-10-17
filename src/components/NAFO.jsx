@@ -10,10 +10,6 @@ export default function NAFO() {
           <h2 className="mt-8 text-4xl font-black tracking-tight text-brand-navy sm:text-5xl">
             Our Progress
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-brand-navy/75">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.
-          </p>
         </header>
 
         <div className="reveal mt-20" style={{ animationDelay: "150ms" }}>
