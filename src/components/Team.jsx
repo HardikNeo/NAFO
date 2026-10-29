@@ -47,19 +47,19 @@ function MemberTile({ member, size }) {
     },
     director: {
       image: "aspect-[4/5]",
-      card: "w-full",
+      card: "w-full max-w-[17rem]",
       name: "text-lg sm:text-xl",
       padding: "p-5",
     },
     manager: {
       image: "aspect-[4/5]",
-      card: "w-full",
+      card: "w-full max-w-[14rem]",
       name: "text-base sm:text-lg",
       padding: "p-4",
     },
     officer: {
       image: "aspect-[4/5]",
-      card: "w-full",
+      card: "w-full max-w-[11rem]",
       name: "text-sm sm:text-base",
       padding: "p-4",
     },
