@@ -1,16 +1,6 @@
 import { db, firebaseConfigured } from "./firebase.js";
-import {
-  collection,
-  addDoc,
-  doc,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-  serverTimestamp,
-} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
-const NOTICES_COLLECTION = "notices";
 const MESSAGES_COLLECTION = "messages";
 
 const PRE_NATIONAL_NOTICE = {
@@ -22,45 +12,12 @@ const PRE_NATIONAL_NOTICE = {
   imageUrl: "",
 };
 
-function mapNotice(id, data) {
-  return {
-    id: id ?? data.id,
-    title: data.title ?? "",
-    date: data.date ?? "",
-    description: data.description ?? "",
-    imageUrl:
-      data.imageUrl ?? data.imageURL ?? data.image_url ?? data.image ?? "",
-  };
-}
-
 export async function fetchNotices() {
-  if (!firebaseConfigured || !db) return [PRE_NATIONAL_NOTICE];
-  try {
-    const q = query(collection(db, NOTICES_COLLECTION), orderBy("date", "desc"));
-    const snapshot = await getDocs(q);
-    const storedNotices = snapshot.docs.map((snap) =>
-      mapNotice(snap.id, snap.data()),
-    );
-    return [
-      PRE_NATIONAL_NOTICE,
-      ...storedNotices.filter((notice) => notice.id !== PRE_NATIONAL_NOTICE.id),
-    ];
-  } catch (error) {
-    console.error("Failed to fetch notices from Firestore:", error);
-    return [PRE_NATIONAL_NOTICE];
-  }
+  return [PRE_NATIONAL_NOTICE];
 }
 
 export async function fetchNoticeById(id) {
-  if (String(id) === PRE_NATIONAL_NOTICE.id) return PRE_NATIONAL_NOTICE;
-  if (!firebaseConfigured || !db) return null;
-  try {
-    const snap = await getDoc(doc(db, NOTICES_COLLECTION, String(id)));
-    if (snap.exists()) return mapNotice(snap.id, snap.data());
-  } catch (error) {
-    console.error("Failed to fetch notice from Firestore:", error);
-  }
-  return null;
+  return String(id) === PRE_NATIONAL_NOTICE.id ? PRE_NATIONAL_NOTICE : null;
 }
 
 export async function submitContactMessage({ name, email, subject, message }) {
