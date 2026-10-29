@@ -82,9 +82,7 @@ export default function Notices() {
                     <h3 className="mt-4 text-xl font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-brand-sienna">
                       {notice.title}
                     </h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-brand-navy/70">
-                      {notice.description}
-                    </p>
+                    <div className="flex-1" />
                     <span className="mt-8 inline-flex items-center gap-2 border-t border-brand-navy/15 pt-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-teal transition-colors group-hover:text-brand-sienna">
                       Read
                       <svg
