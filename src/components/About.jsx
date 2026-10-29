@@ -54,9 +54,14 @@ export default function About() {
             </figure>
             <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-14">
               <span className="kicker">Our Purpose</span>
-              <h3 className="mt-5 text-2xl font-extrabold text-brand-navy sm:text-3xl">
-                Financial learning should be accessible to every student.
-              </h3>
+              <blockquote className="mt-5">
+                <p className="text-2xl font-extrabold leading-snug text-brand-navy sm:text-3xl">
+                  “The first lesson of economics is scarcity: There is never enough of anything to fully satisfy all those who want it.”
+                </p>
+                <footer className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-brand-sienna">
+                  Thomas Sowell · <cite className="normal-case tracking-normal">Is Reality Optional? (1993)</cite>
+                </footer>
+              </blockquote>
               <p className="mt-5 max-w-2xl leading-relaxed text-brand-navy/75">
                 FIN works to make financial literacy and accounting knowledge accessible to students across Nepal, regardless of ethnicity, financial status, or privilege.
               </p>
