@@ -162,7 +162,7 @@ export default function Team() {
                   className={`grid items-start justify-center gap-5 sm:gap-6 ${
                     isFounder
                       ? "grid-cols-1"
-                      : rowIndex === 2
+                      : row.length === 4
                         ? "grid-cols-2 sm:grid-cols-4"
                         : "grid-cols-2 sm:grid-cols-3"
                   }`}
