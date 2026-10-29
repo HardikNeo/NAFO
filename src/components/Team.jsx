@@ -1,19 +1,79 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchTeam } from "../lib/team.js";
+
+const teamRows = [
+  [
+    { name: "Yogeshwor Sharma", role: "Founder and Managing Director" },
+  ],
+  [
+    { name: "Pratyush Neupane", role: "Marketing Director and Founder" },
+    { name: "Nischal Ghimire", role: "Finance Director and Founder" },
+    { name: "Piyush Joshi", role: "Outreach Director and Examination Manager" },
+  ],
+  [
+    { name: "Tikaram Sharma", role: "Exam Coordinator" },
+    { name: "Hardik Neopane", role: "Lead Developer" },
+    { name: "Eron Subedi", role: "Director of Legal Affairs" },
+    { name: "Pranay Singh", role: "Logistics Manager" },
+  ],
+  [
+    { name: "Supreeti Lamichhane", role: "Outreach Officer" },
+    {
+      name: "Sambriddhi Bhattarai",
+      role: "Financial Literacy Assessment Specialist and Examination Manager",
+    },
+    { name: "Pradakshina Khatiwada", role: "Examination Manager" },
+  ],
+];
+
+const chairman = { name: "Nirjala Poudel", role: "Chairman" };
 
 function initials(name) {
   return name
-    .split(/\s+/)
+    .split(/\\s+/)
     .filter(Boolean)
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("");
 }
 
-function MemberTile({ member }) {
+function MemberTile({ member, size }) {
+  const sizeClasses = {
+    founder: {
+      image: "aspect-[4/5] sm:aspect-[5/4]",
+      card: "w-full max-w-sm",
+      name: "text-2xl sm:text-3xl",
+      padding: "p-6 sm:p-8",
+    },
+    director: {
+      image: "aspect-[4/5]",
+      card: "w-full",
+      name: "text-lg sm:text-xl",
+      padding: "p-5",
+    },
+    manager: {
+      image: "aspect-[4/5]",
+      card: "w-full",
+      name: "text-base sm:text-lg",
+      padding: "p-4",
+    },
+    officer: {
+      image: "aspect-[4/5]",
+      card: "w-full",
+      name: "text-sm sm:text-base",
+      padding: "p-4",
+    },
+    chairman: {
+      image: "aspect-[4/5]",
+      card: "w-full",
+      name: "text-xl",
+      padding: "p-5",
+    },
+  }[size];
+
   return (
-    <article className="flex flex-col border border-brand-navy/15 bg-brand-cream">
-      <div className="relative aspect-[4/5] overflow-hidden bg-brand-seafoam">
+    <article className={`mx-auto flex flex-col border border-brand-navy/15 bg-white ${sizeClasses.card}`}>
+      <div className={`relative overflow-hidden bg-brand-seafoam ${sizeClasses.image}`}>
         {member.imageUrl ? (
           <img
             src={member.imageUrl}
@@ -33,11 +93,11 @@ function MemberTile({ member }) {
           </div>
         )}
       </div>
-      <div className="p-6">
-        <h3 className="text-lg font-extrabold leading-snug text-brand-navy">
+      <div className={sizeClasses.padding}>
+        <h3 className={`font-extrabold leading-snug text-brand-navy ${sizeClasses.name}`}>
           {member.name}
         </h3>
-        <p className="mt-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-sienna">
+        <p className="mt-2 text-[0.65rem] font-bold uppercase leading-relaxed tracking-[0.14em] text-brand-sienna sm:text-xs">
           {member.role}
         </p>
       </div>
@@ -46,22 +106,30 @@ function MemberTile({ member }) {
 }
 
 export default function Team() {
-  const [members, setMembers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [storedMembers, setStoredMembers] = useState([]);
 
   useEffect(() => {
     let active = true;
-    fetchTeam()
-      .then((data) => {
-        if (active) setMembers(data);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
+    fetchTeam().then((data) => {
+      if (active) setStoredMembers(data);
+    });
     return () => {
       active = false;
     };
   }, []);
+
+  const membersByName = useMemo(
+    () =>
+      new Map(
+        storedMembers.map((member) => [member.name.trim().toLowerCase(), member]),
+      ),
+    [storedMembers],
+  );
+
+  const withStoredPhoto = (member) => {
+    const stored = membersByName.get(member.name.toLowerCase());
+    return { ...member, imageUrl: stored?.imageUrl ?? "" };
+  };
 
   return (
     <section id="team" className="section-anchor bg-brand-cream">
@@ -73,25 +141,50 @@ export default function Team() {
           </h2>
         </header>
 
-        <div className="reveal mt-20" style={{ animationDelay: "150ms" }}>
-          {loading ? (
-            <p className="py-20 text-center text-xs font-bold uppercase tracking-[0.25em] text-brand-slate">
-              Loading team…
-            </p>
-          ) : members.length === 0 ? (
-            <div className="border border-brand-navy/15 bg-white/50 px-8 py-20 text-center">
-              <h3 className="text-2xl font-black text-brand-navy">Team coming soon</h3>
-              <p className="mx-auto mt-4 max-w-md leading-relaxed text-brand-navy/75">
-                Our team profiles will appear here shortly.
-              </p>
-            </div>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {members.map((member) => (
-                <MemberTile key={member.id} member={member} />
-              ))}
-            </div>
-          )}
+        <div className="mt-14 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-12">
+          <div className="space-y-12 sm:space-y-16">
+            {teamRows.map((row, rowIndex) => {
+              const isFounder = rowIndex === 0;
+              const isDirectorRow = rowIndex === 1;
+              const isManagerRow = rowIndex === 2;
+              const size = isFounder
+                ? "founder"
+                : isDirectorRow
+                  ? "director"
+                  : isManagerRow
+                    ? "manager"
+                    : "officer";
+
+              return (
+                <div
+                  key={rowIndex}
+                  className={`grid items-start justify-center gap-5 sm:gap-6 ${
+                    isFounder
+                      ? "grid-cols-1"
+                      : rowIndex === 2
+                        ? "grid-cols-2 sm:grid-cols-4"
+                        : "grid-cols-2 sm:grid-cols-3"
+                  }`}
+                >
+                  {row.map((member) => (
+                    <MemberTile
+                      key={member.name}
+                      member={withStoredPhoto(member)}
+                      size={size}
+                    />
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+
+          <aside className="lg:sticky lg:top-24">
+            <p className="kicker mb-4">Chairman</p>
+            <MemberTile
+              member={withStoredPhoto(chairman)}
+              size="chairman"
+            />
+          </aside>
         </div>
       </div>
     </section>
