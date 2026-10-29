@@ -26,8 +26,8 @@ function FooterLogo() {
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-navy text-white">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+    <footer className="bg-[#263744] text-white">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <div className="flex items-center gap-4">
@@ -62,7 +62,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-8 sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-8 sm:flex-row sm:items-center">
           <p className="text-[11px] text-white/50">
             © {new Date().getFullYear()} FIN. All rights reserved.
           </p>
