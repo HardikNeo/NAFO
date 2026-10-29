@@ -37,6 +37,26 @@ function toParagraphs(description) {
 export default function About() {
   return (
     <>
+      <section id="about-intro" className="section-anchor bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="reveal grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <div>
+              <span className="kicker">About FIN</span>
+              <h1 className="mt-7 text-4xl font-black leading-tight tracking-tight text-brand-navy sm:text-5xl">
+                Financial confidence should be within every student’s reach.
+              </h1>
+            </div>
+            <div className="max-w-2xl text-base leading-relaxed text-brand-navy/75 sm:text-lg">
+              <p>
+                Financial Initiatives Nepal works to make personal finance and accounting easier for young people across Nepal to learn. We want students to understand everyday money decisions, build lasting financial security, and have the confidence to plan for their futures.
+              </p>
+              <p className="mt-5">
+                Through the National Accounting and Financial Olympiad, high school students can put their knowledge to work and show what they can do. We also aim to widen access to financial education for students who have had fewer opportunities, wherever they live and whatever their background.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       <Team />
       <section id="about" className="section-anchor bg-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
