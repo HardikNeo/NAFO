@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { fetchTeam } from "../lib/team.js";
+import { teamPhotos } from "../lib/teamPhotos.js";
 
 const teamRows = [
   [
@@ -129,7 +130,7 @@ export default function Team() {
 
   const withStoredPhoto = (member) => {
     const stored = membersByName.get(member.name.toLowerCase());
-    return { ...member, imageUrl: stored?.imageUrl ?? "" };
+    return { ...member, imageUrl: teamPhotos[member.name] ?? stored?.imageUrl ?? "" };
   };
 
   return (
