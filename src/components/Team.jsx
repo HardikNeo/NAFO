@@ -25,6 +25,7 @@ const teamRows = [
     },
     { name: "Pradakshina Khatiwada", role: "Examination Manager" },
     { name: "Abinash Poudel", role: "Research Analyst" },
+    { name: "Krinjal Timalsina", role: "Examination Manager" },
   ],
 ];
 
@@ -61,7 +62,7 @@ function MemberTile({ member, size }) {
     },
     officer: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[14rem]",
+      card: "w-full max-w-[10rem]",
       name: "text-sm sm:text-base",
       padding: "p-4",
     },
@@ -163,9 +164,11 @@ export default function Team() {
                   className={`grid items-start justify-center gap-5 sm:gap-6 ${
                     isFounder
                       ? "grid-cols-1"
-                      : row.length === 4
-                        ? "grid-cols-2 sm:grid-cols-4"
-                        : "grid-cols-2 sm:grid-cols-3"
+                      : row.length === 5
+                        ? "grid-cols-2 sm:grid-cols-3 xl:grid-cols-5"
+                        : row.length === 4
+                          ? "grid-cols-2 sm:grid-cols-4"
+                          : "grid-cols-2 sm:grid-cols-3"
                   }`}
                 >
                   {row.map((member) => (
