@@ -76,10 +76,10 @@ export default function About() {
               <span className="kicker">Our Purpose</span>
               <blockquote className="mt-5">
                 <p className="text-2xl font-extrabold leading-snug text-brand-navy sm:text-3xl">
-                  “The first lesson of economics is scarcity: There is never enough of anything to fully satisfy all those who want it.”
+                  “Even if we all had equal potential at birth, or at conception, too many factors are at work—and at work differently from one individual to another, even within the same family — for us to develop the same capabilities to the same degree.”
                 </p>
                 <footer className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-brand-sienna">
-                  Thomas Sowell · <cite className="normal-case tracking-normal">Is Reality Optional? (1993)</cite>
+                  Thomas Sowell
                 </footer>
               </blockquote>
               <p className="mt-5 max-w-2xl leading-relaxed text-brand-navy/75">
