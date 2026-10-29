@@ -44,7 +44,7 @@ function MemberTile({ member, size }) {
   const sizeClasses = {
     founder: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[19.2rem]",
+      card: "w-full max-w-[17.28rem]",
       name: "text-2xl sm:text-3xl",
       padding: "p-6 sm:p-8",
     },
@@ -68,7 +68,7 @@ function MemberTile({ member, size }) {
     },
     chairman: {
       image: "aspect-[4/5]",
-      card: "w-full",
+      card: "w-full max-w-[14.25rem]",
       name: "text-xl",
       padding: "p-5",
     },
@@ -144,7 +144,7 @@ export default function Team() {
           </h2>
         </header>
 
-        <div className="mt-14 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-12">
+        <div className="mt-14 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_14.25rem] lg:gap-12">
           <div className="space-y-12 sm:space-y-16">
             {teamRows.map((row, rowIndex) => {
               const isFounder = rowIndex === 0;
