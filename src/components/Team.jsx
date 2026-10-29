@@ -12,7 +12,7 @@ const teamRows = [
     { name: "Piyush Joshi", role: "Outreach Director and Examination Manager" },
   ],
   [
-    { name: "Tikaram Sharma", role: "Exam Coordinator" },
+    { name: "Tikaram Sharma", role: "Examination Coordinator" },
     { name: "Hardik Neopane", role: "Lead Developer" },
     { name: "Eron Subedi", role: "Director of Legal Affairs" },
     { name: "Pranay Singh", role: "Logistics Manager" },
