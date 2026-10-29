@@ -23,10 +23,11 @@ const teamRows = [
       role: "Financial Literacy Assessment Specialist and Examination Manager",
     },
     { name: "Pradakshina Khatiwada", role: "Examination Manager" },
+    { name: "Abinash Poudel", role: "Research Analyst" },
   ],
 ];
 
-const chairman = { name: "Nirjala Poudel", role: "Chairman" };
+const chairman = { name: "Nirjala Poudel", role: "Chairman and Chief Advisor" };
 
 function initials(name) {
   return name
@@ -59,7 +60,7 @@ function MemberTile({ member, size }) {
     },
     officer: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[11rem]",
+      card: "w-full max-w-[14rem]",
       name: "text-sm sm:text-base",
       padding: "p-4",
     },
