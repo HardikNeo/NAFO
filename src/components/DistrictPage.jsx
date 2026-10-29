@@ -65,10 +65,7 @@ export default function DistrictPage() {
         >
           <div className="border-t border-brand-navy/15 pt-8">
             <h2 className="text-2xl font-black text-brand-navy">Photos</h2>
-            <p className="mt-4 leading-relaxed text-brand-navy/70">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               {photos.map((url, index) => (
                 <div
@@ -82,7 +79,7 @@ export default function DistrictPage() {
                       src={url}
                       alt={`${info.name} — FIN`}
                       loading="lazy"
-                      className="h-full w-full object-cover"
+                      className={`h-full w-full ${info.slug === "dolpa" ? "object-contain" : "object-cover"}`}
                     />
                   ) : (
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-slate">

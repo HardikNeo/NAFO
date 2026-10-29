@@ -65,10 +65,7 @@ export default function ResultsList() {
           <h1 className="mt-5 text-4xl font-black tracking-tight text-brand-navy sm:text-5xl">
             {LABELS[list]} — {info.name}
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-brand-navy/75">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+
         </header>
 
         <div
