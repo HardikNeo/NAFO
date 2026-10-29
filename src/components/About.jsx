@@ -1,4 +1,5 @@
 import Team from "./Team.jsx";
+import { homeImages } from "../lib/homeImages.js";
 
 const pillars = [
   {
@@ -39,6 +40,29 @@ export default function About() {
       <Team />
       <section id="about" className="section-anchor bg-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="mb-16 grid overflow-hidden border border-brand-navy/15 bg-brand-cream sm:grid-cols-[16rem_minmax(0,1fr)]">
+            <figure className="relative">
+              <img
+                src={homeImages.sowellMono}
+                alt="Portrait of Thomas Sowell"
+                loading="lazy"
+                className="aspect-[4/5] h-full w-full object-cover grayscale"
+              />
+              <figcaption className="absolute bottom-3 left-3 bg-brand-navy/80 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
+                Thomas Sowell
+              </figcaption>
+            </figure>
+            <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-14">
+              <span className="kicker">Our Purpose</span>
+              <h3 className="mt-5 text-2xl font-extrabold text-brand-navy sm:text-3xl">
+                Financial learning should be accessible to every student.
+              </h3>
+              <p className="mt-5 max-w-2xl leading-relaxed text-brand-navy/75">
+                FIN works to make financial literacy and accounting knowledge accessible to students across Nepal, regardless of ethnicity, financial status, or privilege.
+              </p>
+            </div>
+          </div>
+
           <div className="grid gap-16 sm:grid-cols-2 lg:gap-x-16 lg:gap-y-20">
             {pillars.map((pillar, index) => (
               <article
