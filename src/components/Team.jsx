@@ -50,7 +50,7 @@ function MemberTile({ member, size }) {
     },
     director: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[13.6rem]",
+      card: "w-full max-w-[12.65rem]",
       name: "text-lg sm:text-xl",
       padding: "p-5",
     },
