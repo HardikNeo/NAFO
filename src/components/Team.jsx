@@ -44,25 +44,25 @@ function MemberTile({ member, size }) {
   const sizeClasses = {
     founder: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-sm",
+      card: "w-full max-w-[19.2rem]",
       name: "text-2xl sm:text-3xl",
       padding: "p-6 sm:p-8",
     },
     director: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[17rem]",
+      card: "w-full max-w-[13.6rem]",
       name: "text-lg sm:text-xl",
       padding: "p-5",
     },
     manager: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[14rem]",
+      card: "w-full max-w-[11.2rem]",
       name: "text-base sm:text-lg",
       padding: "p-4",
     },
     officer: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[10rem]",
+      card: "w-full max-w-[8rem]",
       name: "text-sm sm:text-base",
       padding: "p-4",
     },
