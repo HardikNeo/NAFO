@@ -131,7 +131,8 @@ export default function Team() {
 
   const withStoredPhoto = (member) => {
     const stored = membersByName.get(member.name.toLowerCase());
-    return { ...member, imageUrl: teamPhotos[member.name] ?? stored?.imageUrl ?? "" };
+    const imageUrl = member.name === "Hardik Neopane" ? "" : teamPhotos[member.name] ?? stored?.imageUrl ?? "";
+    return { ...member, imageUrl };
   };
 
   return (
