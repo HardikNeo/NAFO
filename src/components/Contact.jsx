@@ -38,7 +38,7 @@ export default function Contact() {
     setError("");
 
     const formData = new FormData(event.currentTarget);
-    const ok = await submitContactMessage({
+    const result = await submitContactMessage({
       name: formData.get("name"),
       email: formData.get("email"),
       subject: formData.get("subject"),
@@ -46,11 +46,15 @@ export default function Contact() {
     });
 
     setSending(false);
-    if (ok) {
+    if (result.ok) {
       setSubmitted(true);
+    } else if (result.reason === "not-configured") {
+      setError(
+        "The contact form isn't connected to Firebase yet. Please email us at nafo.nepal@gmail.com in the meantime."
+      );
     } else {
       setError(
-        "We couldn't send your message. Firebase isn't configured yet — add your config to make the form live."
+        "We couldn't send your message right now. Please try again in a moment, or email us at nafo.nepal@gmail.com."
       );
     }
   }
@@ -134,7 +138,12 @@ export default function Contact() {
                 </div>
 
                 {error && (
-                  <p className="mt-6 text-sm font-semibold text-brand-sienna">{error}</p>
+                  <p
+                    role="alert"
+                    className="mt-6 text-sm font-semibold text-brand-sienna"
+                  >
+                    {error}
+                  </p>
                 )}
 
                 <button
