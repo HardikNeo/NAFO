@@ -83,7 +83,7 @@ export default function About() {
                 </footer>
               </blockquote>
               <p className="mt-5 max-w-2xl leading-relaxed text-brand-navy/75">
-                Guided by Dr. Thomas Sowell’s principle, FIN works to remove artificial barriers and make financial literacy and accounting education accessible to students across Nepal, regardless of ethnicity, financial status, or privilege.
+                In keeping with Dr. Thomas Sowell’s principle, FIN actively works to dismantle artificial barriers and make financial literacy and accounting knowledge accessible to students across Nepal, regardless of ethnicity, financial circumstances, or privilege.
               </p>
             </div>
           </div>
