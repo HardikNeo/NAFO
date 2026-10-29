@@ -162,14 +162,6 @@ export default function Contact() {
                 </li>
                 <li className="flex items-center gap-3">
                   <svg className="h-5 w-5 shrink-0 text-brand-seafoam" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 0 1 2-2h2.18a2 2 0 0 1 1.93 1.47l.8 3a2 2 0 0 1-.83 2.2l-1.1.73a13 13 0 0 0 5.42 5.42l.73-1.1a2 2 0 0 1 2.2-.83l3 .8A2 2 0 0 1 21 16.82V19a2 2 0 0 1-2 2h-1C9.72 21 3 14.28 3 6V5Z" />
-                  </svg>
-                  <a href="tel:+9771000000000" className="hover:text-brand-seafoam">
-                    +977 1 000 0000
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <svg className="h-5 w-5 shrink-0 text-brand-seafoam" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0Z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   </svg>
