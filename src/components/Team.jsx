@@ -43,7 +43,7 @@ function initials(name) {
 function MemberTile({ member, size }) {
   const sizeClasses = {
     founder: {
-      image: "aspect-[4/5] sm:aspect-[5/4]",
+      image: "aspect-[4/5]",
       card: "w-full max-w-sm",
       name: "text-2xl sm:text-3xl",
       padding: "p-6 sm:p-8",
