@@ -51,7 +51,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       to={link.to}
-                      className="text-sm text-white/70 transition-colors hover:text-white"
+                      className="text-[13px] text-white/60 transition-colors hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-8 sm:flex-row sm:items-center">
-          <p className="text-xs text-white/60">
+          <p className="text-[11px] text-white/50">
             © {new Date().getFullYear()} FIN. All rights reserved.
           </p>
           <p className="text-xs text-white/60">
