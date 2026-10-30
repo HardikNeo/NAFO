@@ -33,7 +33,15 @@ jobs:
       # Leaving an empty `env:` block here would override it with blank strings
       # and silently disable Firestore, so the build reads the file instead.
       - name: Build
-        run: npm run build
+        run: |
+          set +e
+          npm run build 2>&1 | tee build.log
+          code=${PIPESTATUS[0]}
+          if [ "$code" -ne 0 ]; then
+            msg=$(tail -n 40 build.log | sed -r 's/\x1B\[[0-9;]*[mK]//g' | tr '\n' '~' | tr -d '%' | cut -c1-1500)
+            echo "::error title=Build failed::${msg}"
+          fi
+          exit $code
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
