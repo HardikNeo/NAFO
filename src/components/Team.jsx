@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { fetchTeam } from "../lib/team.js";
 import { teamPhotos } from "../lib/teamPhotos.js";
+import chairmanPhoto from "../../images/nip.jpg";
 
 const teamRows = [
   [
@@ -30,6 +31,11 @@ const teamRows = [
 ];
 
 const chairman = { name: "Nirjala Poudel", role: "Chairman and Chief Advisor" };
+
+// Photos bundled from `images/` take priority over Firestore `imageUrl` values.
+const localPhotos = {
+  "Nirjala Poudel": chairmanPhoto,
+};
 
 function initials(name) {
   return name
@@ -131,7 +137,13 @@ export default function Team() {
 
   const withStoredPhoto = (member) => {
     const stored = membersByName.get(member.name.toLowerCase());
-    const imageUrl = member.name === "Hardik Neopane" ? "" : teamPhotos[member.name] ?? stored?.imageUrl ?? "";
+    const imageUrl =
+      member.name === "Hardik Neopane"
+        ? ""
+        : localPhotos[member.name] ??
+          teamPhotos[member.name] ??
+          stored?.imageUrl ??
+          "";
     return { ...member, imageUrl };
   };
 
