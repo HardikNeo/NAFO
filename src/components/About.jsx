@@ -1,5 +1,8 @@
+import { useState } from "react";
 import Team from "./Team.jsx";
+import Modal from "./Modal.jsx";
 import { homeImages } from "../lib/homeImages.js";
+import ocrImage from "../../images/ocr.png";
 
 const pillars = [
   {
@@ -35,6 +38,8 @@ function toParagraphs(description) {
 }
 
 export default function About() {
+  const [authOpen, setAuthOpen] = useState(false);
+
   return (
     <>
       <section id="about-intro" className="section-anchor bg-white">
@@ -57,6 +62,34 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <section
+        id="authentication"
+        className="section-anchor border-t border-brand-navy/10 bg-white"
+      >
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <div className="reveal flex flex-col items-start justify-between gap-8 border border-brand-navy/15 bg-brand-cream p-8 sm:flex-row sm:items-center lg:p-10">
+            <div className="max-w-2xl">
+              <span className="kicker">Verification</span>
+              <h2 className="mt-4 text-3xl font-black tracking-tight text-brand-navy sm:text-4xl">
+                Officially Authenticated
+              </h2>
+              <p className="mt-3 leading-relaxed text-brand-navy/70">
+                View our authentication document to verify Financial Initiatives
+                Nepal&apos;s official registration.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setAuthOpen(true)}
+              className="btn btn-primary w-full shrink-0 sm:w-auto"
+            >
+              Our Authentication
+            </button>
+          </div>
+        </div>
+      </section>
+
       <Team />
       <section id="about" className="section-anchor bg-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
@@ -123,6 +156,18 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {authOpen && (
+        <Modal label="Our Authentication" onClose={() => setAuthOpen(false)}>
+          <div className="flex items-center justify-center bg-brand-cream p-4 sm:p-8">
+            <img
+              src={ocrImage}
+              alt="Financial Initiatives Nepal authentication document"
+              className="max-h-[75vh] w-auto max-w-full border border-brand-navy/15 bg-white object-contain"
+            />
+          </div>
+        </Modal>
+      )}
     </>
   );
 }
