@@ -19,10 +19,7 @@ const teamRows = [
   [
     { name: "Tikaram Sharma", role: "Examination Coordinator" },
     { name: "Hardik Neopane", role: "Lead Developer" },
-    {
-      name: "Sambriddhi Bhattarai",
-      role: "Financial Literacy Assessment Specialist and Examination Manager",
-    },
+    { name: "Arpit Gaulee", role: "Finance Officer" },
   ],
   [
     { name: "Supreeti Lamichhane", role: "Outreach Officer" },
@@ -30,7 +27,10 @@ const teamRows = [
     { name: "Abinash Poudel", role: "Research Analyst" },
   ],
   [
-    { name: "Arpit Gaulee", role: "Finance Officer" },
+    {
+      name: "Sambriddhi Bhattarai",
+      role: "Financial Literacy Assessment Specialist and Examination Manager",
+    },
     { name: "Krinjal Timalsina", role: "Examination Manager" },
     { name: "Aarya Sharma", role: "Documentation Specialist; Examination Manager" },
     { name: "Pradakshina Khatiwada", role: "Examination Manager" },
