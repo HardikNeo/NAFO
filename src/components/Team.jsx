@@ -30,7 +30,7 @@ const teamRows = [
     { name: "Abinash Poudel", role: "Research Analyst" },
   ],
   [
-    { name: "Arpit Faulee", role: "Finance Officer" },
+    { name: "Arpit Gaulee", role: "Finance Officer" },
     { name: "Krinjal Timalsina", role: "Examination Manager" },
     { name: "Aarya Sharma", role: "Documentation Specialist; Examination Manager" },
     { name: "Pradakshina Khatiwada", role: "Examination Manager" },
