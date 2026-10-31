@@ -14,19 +14,22 @@ const teamRows = [
     { name: "Piyush Joshi", role: "Outreach Director and Examination Manager" },
   ],
   [
-    { name: "Tikaram Sharma", role: "Examination Coordinator" },
     { name: "Hardik Neopane", role: "Lead Developer" },
-    { name: "Pranay Singh", role: "Logistics Manager" },
-  ],
-  [
-    { name: "Supreeti Lamichhane", role: "Outreach Officer" },
+    { name: "Tikaram Sharma", role: "Examination Coordinator" },
     {
       name: "Sambriddhi Bhattarai",
       role: "Financial Literacy Assessment Specialist and Examination Manager",
     },
-    { name: "Pradakshina Khatiwada", role: "Examination Manager" },
+  ],
+  [
+    { name: "Supreeti Lamichhane", role: "Outreach Officer" },
+    { name: "Pranay Singh", role: "Logistics Manager" },
     { name: "Abinash Poudel", role: "Research Analyst" },
+  ],
+  [
     { name: "Krinjal Timalsina", role: "Examination Manager" },
+    { name: "Pradakshina Khatiwada", role: "Examination Manager" },
+    { name: "Aarya Sharma", role: "Documentation Specialist; Examination Manager" },
   ],
 ];
 
