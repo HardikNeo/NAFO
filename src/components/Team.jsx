@@ -9,16 +9,16 @@ const teamRows = [
     { name: "Yogeshwor Sharma", role: "Founder and Managing Director" },
   ],
   [
-    { name: "Pratyush Neupane", role: "Marketing Director and Founder" },
     { name: "Nischal Ghimire", role: "Founder and Finance Director" },
+    { name: "Pratyush Neupane", role: "Marketing Director and Founder" },
     {
       name: "Piyush Joshi",
       role: "Founder, Outreach Director and Examination Manager",
     },
   ],
   [
-    { name: "Hardik Neopane", role: "Lead Developer" },
     { name: "Tikaram Sharma", role: "Examination Coordinator" },
+    { name: "Hardik Neopane", role: "Lead Developer" },
     {
       name: "Sambriddhi Bhattarai",
       role: "Financial Literacy Assessment Specialist and Examination Manager",
@@ -30,10 +30,10 @@ const teamRows = [
     { name: "Abinash Poudel", role: "Research Analyst" },
   ],
   [
-    { name: "Krinjal Timalsina", role: "Examination Manager" },
-    { name: "Pradakshina Khatiwada", role: "Examination Manager" },
-    { name: "Aarya Sharma", role: "Documentation Specialist; Examination Manager" },
     { name: "Arpit Faulee", role: "Finance Officer" },
+    { name: "Krinjal Timalsina", role: "Examination Manager" },
+    { name: "Aarya Sharma", role: "Documentation Specialist; Examination Manager" },
+    { name: "Pradakshina Khatiwada", role: "Examination Manager" },
   ],
 ];
 
@@ -64,19 +64,19 @@ function MemberTile({ member, size }) {
     },
     director: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[12.65rem]",
+      card: "w-full max-w-[13.5rem]",
       name: "text-lg sm:text-xl",
       padding: "p-5",
     },
     manager: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[11.2rem]",
+      card: "w-full max-w-[12.25rem]",
       name: "text-base sm:text-lg",
       padding: "p-4",
     },
     officer: {
       image: "aspect-[4/5]",
-      card: "w-full max-w-[8rem]",
+      card: "w-full max-w-[9.5rem]",
       name: "text-sm sm:text-base",
       padding: "p-4",
     },
@@ -182,7 +182,7 @@ export default function Team() {
               return (
                 <div
                   key={rowIndex}
-                  className={`grid items-start justify-center gap-5 sm:gap-6 ${
+                  className={`grid items-start justify-center gap-3 sm:gap-4 ${
                     isFounder
                       ? "grid-cols-1"
                       : row.length === 5
