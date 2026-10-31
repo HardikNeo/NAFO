@@ -10,6 +10,25 @@
     <title>FIN | Financial Initiatives Nepal</title>
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
+    <script>
+      // Restore a path handed over by public/404.html on static hosts.
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get("redirect");
+        if (
+          redirect &&
+          redirect.charAt(0) === "/" &&
+          redirect.charAt(1) !== "/" &&
+          redirect.charAt(1) !== "\\"
+        ) {
+          try {
+            window.history.replaceState(null, "", redirect);
+          } catch (error) {
+            // Ignore malformed redirect targets.
+          }
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

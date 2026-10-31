@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Not Found | FIN</title>
     <meta name="robots" content="noindex" />
+    <script>
+      // Static hosts that do not rewrite unknown paths to index.html serve this
+      // page instead. Send the visitor back to the app with the original path so
+      // React Router can render the right page.
+      (function () {
+        var target =
+          window.location.pathname +
+          window.location.search +
+          window.location.hash;
+        window.location.replace("/?redirect=" + encodeURIComponent(target));
+      })();
+    </script>
     <style>
       * {
         box-sizing: border-box;
