@@ -38,9 +38,11 @@ Where they appear:
 ## Result lists
 
 Committed results live in `src/lib/resultsData.js` and override Firestore for
-the districts they cover. Each entry can include `name`, `marks`, and (for
-Kathmandu Valley) a school group. Set `showMarks: false` to hide the marks
-column, and add a `note` for a district-specific message.
+the districts they cover. Each entry can include `name`, `marks`, and a
+`school` (Kathmandu Valley uses school groups as a data source, but the lists
+are displayed as one ranking ordered by marks with the school shown under each
+name). Set `showMarks: false` to hide the marks column, and add a `note` for a
+district-specific message.
 
 Firestore remains available as a fallback:
 

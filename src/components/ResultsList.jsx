@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { getDistrict, getResults, fetchDistrictResults } from "../lib/progress.js";
-import {
-  getResultsMeta,
-  getStaticGroups,
-  getStaticRows,
-} from "../lib/resultsData.js";
+import { getResultsMeta, getStaticRows } from "../lib/resultsData.js";
 
 const LABELS = {
   selected: "Selected",
@@ -41,7 +37,6 @@ export default function ResultsList() {
   }
 
   const meta = getResultsMeta(district);
-  const staticGroups = getStaticGroups(district, list);
 
   // Committed results take priority; Firestore is used only when a district has
   // no committed list. Placeholder rows are the final fallback.
@@ -55,14 +50,10 @@ export default function ResultsList() {
       }))
     : getResults(info.name, list, district);
 
-  const groups = staticGroups ?? [{ school: "", rows: results }];
-
-  let runningIndex = 0;
-  const numberedGroups = groups.map((group) => {
-    const start = runningIndex;
-    runningIndex += group.rows.length;
-    return { ...group, start };
-  });
+  // Rank by marks (highest first). Equal marks keep their original order.
+  const orderedResults = [...results].sort(
+    (a, b) => (b.marks ?? -Infinity) - (a.marks ?? -Infinity),
+  );
 
   return (
     <section id="results-list" className="section-anchor bg-brand-cream">
@@ -104,58 +95,44 @@ export default function ResultsList() {
           style={{ animationDelay: "150ms" }}
         >
           <div className="overflow-hidden border border-brand-navy/15 bg-white">
-            {numberedGroups.map((group, groupIndex) => (
-              <div
-                key={group.school || groupIndex}
-                className={groupIndex > 0 ? "border-t border-brand-navy/15" : ""}
-              >
-                {group.school ? (
-                  <div className="border-b border-brand-navy/15 bg-brand-cream px-6 py-4">
-                    <h2 className="text-xs font-bold uppercase tracking-[0.22em] text-brand-sienna">
-                      {group.school}
-                    </h2>
-                  </div>
-                ) : null}
-                <ol className="divide-y divide-brand-navy/15">
-                  {group.rows.map((item, index) => (
-                    <li
-                      key={item.id ?? `${group.school}-${index}`}
-                      className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-                    >
-                      <div className="flex items-center gap-6">
-                        <span className="font-serif text-2xl font-bold text-brand-navy/40">
-                          {String(group.start + index + 1).padStart(2, "0")}
-                        </span>
-                        <div>
-                          <p className="text-base font-extrabold text-brand-navy">
-                            {item.name}
-                          </p>
-                          {item.school && !group.school ? (
-                            <p className="mt-0.5 text-sm text-brand-navy/70">
-                              {item.school}
-                            </p>
-                          ) : null}
-                        </div>
-                      </div>
-                      {meta.showMarks && item.marks != null ? (
-                        <p className="flex items-baseline gap-2 sm:justify-end">
-                          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-slate">
-                            Marks
-                          </span>
-                          <span className="text-lg font-extrabold text-brand-navy">
-                            {item.marks}
-                          </span>
-                        </p>
-                      ) : !usingStatic && !live ? (
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
-                          Placeholder
+            <ol className="divide-y divide-brand-navy/15">
+              {orderedResults.map((item, index) => (
+                <li
+                  key={item.id ?? `${list}-${index}`}
+                  className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                >
+                  <div className="flex items-center gap-6">
+                    <span className="font-serif text-2xl font-bold text-brand-navy/40">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p className="text-base font-extrabold text-brand-navy">
+                        {item.name}
+                      </p>
+                      {item.school ? (
+                        <p className="mt-0.5 text-sm text-brand-navy/70">
+                          {item.school}
                         </p>
                       ) : null}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            ))}
+                    </div>
+                  </div>
+                  {meta.showMarks && item.marks != null ? (
+                    <p className="flex items-baseline gap-2 sm:justify-end">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-slate">
+                        Marks
+                      </span>
+                      <span className="text-lg font-extrabold text-brand-navy">
+                        {item.marks}
+                      </span>
+                    </p>
+                  ) : !usingStatic && !live ? (
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
+                      Placeholder
+                    </p>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </div>

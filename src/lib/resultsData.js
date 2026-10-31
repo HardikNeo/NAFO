@@ -2,7 +2,8 @@
 //
 // These lists are committed with the site so the published pages always show
 // the official results, even when Firestore has no documents yet. Kathmandu
-// Valley is split by school; the other districts use a single list.
+// Valley entries carry a school name; the lists themselves are ranked by marks
+// with the school shown under each student name.
 //
 // `marks` is kept for ordering and for districts where marks are public.
 // Dolpa sets `showMarks: false` so the marks column is hidden there.
@@ -129,19 +130,6 @@ export function getStaticRows(slug, listKey) {
   }
 
   return data[listKey] ?? [];
-}
-
-// School-grouped rows, only for districts that define `groups`.
-export function getStaticGroups(slug, listKey) {
-  const data = resultsData[slug];
-  if (!data?.groups) return null;
-
-  return data.groups
-    .map((group) => ({
-      school: group.school,
-      rows: group[listKey] ?? [],
-    }))
-    .filter((group) => group.rows.length > 0);
 }
 
 export function hasStaticResults(slug, listKey) {
