@@ -1,5 +1,6 @@
 import { Link, useParams, Navigate } from "react-router-dom";
 import { getDistrict } from "../lib/progress.js";
+import { getResultsMeta, getResultSchools } from "../lib/resultsData.js";
 
 const lists = [
   {
@@ -26,6 +27,8 @@ export default function Results() {
 
   const districtPath = `/nafo/${district}`;
   const resultsPath = `${districtPath}/results`;
+  const meta = getResultsMeta(district);
+  const schools = getResultSchools(district);
 
   return (
     <section id="results" className="section-anchor bg-brand-cream">
@@ -52,7 +55,19 @@ export default function Results() {
           <h1 className="mt-5 text-4xl font-black tracking-tight text-brand-navy sm:text-5xl">
             Results — {info.name}
           </h1>
-
+          <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
+            Verified by the Examination Coordinator
+          </p>
+          {schools.length > 0 ? (
+            <p className="mt-4 text-sm font-semibold text-brand-navy/70">
+              Schools: {schools.join(" · ")}
+            </p>
+          ) : null}
+          {meta.note ? (
+            <p className="mt-6 border-l-2 border-brand-sienna bg-white px-5 py-4 text-sm font-semibold leading-relaxed text-brand-navy">
+              {meta.note}
+            </p>
+          ) : null}
         </header>
 
         <div

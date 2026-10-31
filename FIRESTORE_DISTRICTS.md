@@ -1,13 +1,17 @@
 # District content
 
-Two sources, one per content type:
+Three sources:
 
 - **Photos** — bundled with the site from `images/<district>/` (named `1`, `2`, …).
-- **Result lists** (selected / waitlisted) — read from Firestore, one collection
-  per district.
+- **Verified result lists** — committed in `src/lib/resultsData.js`. These take
+  priority and are what the published site shows for Dolpa, Jhapa, Kathmandu
+  Valley, Jumla, and Dhangadhi (Kailali).
+- **Fallback result lists** — read from Firestore for any district that has no
+  committed list.
 
 Nothing is written by the site; you manage the Firestore lists in the Firebase
-console and the photos in the repo.
+console, the committed lists in `src/lib/resultsData.js`, and the photos in the
+repo.
 
 ## Photos
 
@@ -33,6 +37,13 @@ Where they appear:
 
 ## Result lists
 
+Committed results live in `src/lib/resultsData.js` and override Firestore for
+the districts they cover. Each entry can include `name`, `marks`, and (for
+Kathmandu Valley) a school group. Set `showMarks: false` to hide the marks
+column, and add a `note` for a district-specific message.
+
+Firestore remains available as a fallback:
+
 ```
 <collection>/selected    -> { names: [...] }
 <collection>/waitlisted  -> { names: [...] }
@@ -46,7 +57,7 @@ Where they appear:
 | Jumla            | `/nafo/jumla`            | `jumla`     | `jumla`       |
 | Dolpa            | `/nafo/dolpa`            | `dolpa`     | `dolpa`       |
 | Jhapa            | `/nafo/jhapa`            | `jhapa`     | `jhapa`       |
-| Kailali          | `/nafo/kailali`          | `kailali`   | `kailali`     |
+| Dhangadhi        | `/nafo/kailali`          | `kailali`   | `kailali`     |
 | Parsa            | `/nafo/parsa`            | `parsa`     | `parsa`       |
 | Morang           | `/nafo/morang`           | `morang`    | `morang`      |
 | Kavre            | `/nafo/kavre`            | `kavre`     | `kavre`       |

@@ -63,9 +63,14 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-8 sm:flex-row sm:items-center">
-          <p className="text-[11px] text-white/50">
-            © {new Date().getFullYear()} FIN. All rights reserved.
-          </p>
+          <div className="space-y-1">
+            <p className="text-[11px] text-white/50">
+              © {new Date().getFullYear()} FIN. All rights reserved.
+            </p>
+            <p className="text-[11px] text-white/40">
+              Credits: Eron Subedi - Web Design
+            </p>
+          </div>
           <p className="text-xs text-white/60">
             Kathmandu, Nepal
           </p>

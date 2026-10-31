@@ -1,5 +1,6 @@
 import { db, firebaseConfigured } from "./firebase.js";
 import { doc, getDoc } from "firebase/firestore";
+import { getStaticRows } from "./resultsData.js";
 
 // District photos are bundled from `images/<collection>/` (named 1, 2, ...).
 // District result lists (selected / waitlisted) come from Firestore, one
@@ -93,7 +94,7 @@ export const districts = [
   { slug: "jhapa", name: "Jhapa", province: "Koshi", collection: "jhapa" },
   {
     slug: "kailali",
-    name: "Kailali",
+    name: "Dhangadhi",
     province: "Sudurpashchim",
     collection: "kailali",
   },
@@ -216,8 +217,20 @@ export async function fetchDistrictResults(slug) {
   };
 }
 
-// Placeholder name lists — used only when a district has no Firestore data yet.
-export function getResults(districtName, listKey) {
+// Verified committed results first, then placeholder rows when a district has
+// neither static data nor Firestore documents.
+export function getResults(districtName, listKey, slug) {
+  const staticRows = slug ? getStaticRows(slug, listKey) : null;
+
+  if (staticRows && staticRows.length > 0) {
+    return staticRows.map((entry, index) => ({
+      id: `${listKey}-${index + 1}`,
+      name: entry.name,
+      school: entry.school ?? "",
+      marks: entry.marks,
+    }));
+  }
+
   const count = listKey === "selected" ? 8 : 4;
   return Array.from({ length: count }, (_, index) => ({
     id: `${listKey}-${index + 1}`,

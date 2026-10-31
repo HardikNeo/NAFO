@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <section id="home" className="section-anchor bg-brand-cream">
-      <div className="mx-auto max-w-7xl px-4 pt-24 pb-24 sm:px-6 lg:px-8 lg:pt-32 lg:pb-32">
+      <div className="mx-auto max-w-7xl px-4 pt-10 pb-24 sm:px-6 lg:px-8 lg:pt-14 lg:pb-32">
         <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-24">
           <div className="reveal relative isolate min-h-[36rem] overflow-hidden rounded-lg bg-brand-navy px-8 py-10 text-white sm:px-10 sm:py-12 lg:px-12">
             <div aria-hidden="true" className="absolute inset-0">
