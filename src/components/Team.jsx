@@ -10,8 +10,11 @@ const teamRows = [
   ],
   [
     { name: "Pratyush Neupane", role: "Marketing Director and Founder" },
-    { name: "Nischal Ghimire", role: "Finance Director and Founder" },
-    { name: "Piyush Joshi", role: "Outreach Director and Examination Manager" },
+    { name: "Nischal Ghimire", role: "Founder and Finance Director" },
+    {
+      name: "Piyush Joshi",
+      role: "Founder, Outreach Director and Examination Manager",
+    },
   ],
   [
     { name: "Hardik Neopane", role: "Lead Developer" },
@@ -30,6 +33,7 @@ const teamRows = [
     { name: "Krinjal Timalsina", role: "Examination Manager" },
     { name: "Pradakshina Khatiwada", role: "Examination Manager" },
     { name: "Aarya Sharma", role: "Documentation Specialist; Examination Manager" },
+    { name: "Arpit Faulee", role: "Finance Officer" },
   ],
 ];
 
