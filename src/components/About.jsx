@@ -2,7 +2,7 @@ import { useState } from "react";
 import Team from "./Team.jsx";
 import Modal from "./Modal.jsx";
 import { homeImages } from "../lib/homeImages.js";
-import ocrImage from "../../images/ocr.png";
+import ocrImage from "../../images/documents/authentication.png";
 
 const pillars = [
   {

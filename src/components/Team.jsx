@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { fetchTeam } from "../lib/team.js";
 import { teamPhotos } from "../lib/teamPhotos.js";
-import chairmanPhoto from "../../images/nip.jpg";
-import tikaramPhoto from "../../images/tikaram.jpg";
+import chairmanPhoto from "../../images/team/nirjala-poudel.jpg";
+import tikaramPhoto from "../../images/team/tikaram-sharma.jpg";
 
 const teamRows = [
   [
