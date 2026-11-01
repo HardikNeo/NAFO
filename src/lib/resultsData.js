@@ -7,6 +7,12 @@
 //
 // `marks` is kept for ordering and for districts where marks are public.
 // Dolpa sets `showMarks: false` so the marks column is hidden there.
+//
+// Districts whose papers are still being checked carry `pending: true` and no
+// lists, so the results pages show the pending message instead of names.
+
+export const PENDING_RESULTS_MESSAGE =
+  "Examination papers are undergoing checking by the examination coordinator";
 
 function student(name, marks) {
   return { name, marks };
@@ -108,6 +114,9 @@ export const resultsData = {
       student("Pratik Mahara", 27.5),
     ],
   },
+  parsa: { showMarks: false, pending: true },
+  morang: { showMarks: false, pending: true },
+  kavre: { showMarks: false, pending: true },
 };
 
 export function getStaticResults(slug) {
@@ -142,6 +151,7 @@ export function getResultsMeta(slug) {
   return {
     showMarks: data?.showMarks !== false,
     note: data?.note ?? "",
+    pending: data?.pending === true,
   };
 }
 

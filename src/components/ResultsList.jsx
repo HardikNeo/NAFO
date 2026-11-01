@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
-import { getDistrict, getResults, fetchDistrictResults } from "../lib/progress.js";
-import { getResultsMeta, getStaticRows } from "../lib/resultsData.js";
+import { getDistrict, fetchDistrictResults } from "../lib/progress.js";
+import {
+  PENDING_RESULTS_MESSAGE,
+  getResultsMeta,
+  getStaticRows,
+} from "../lib/resultsData.js";
 
 const LABELS = {
   selected: "Selected",
@@ -39,8 +43,11 @@ export default function ResultsList() {
   const meta = getResultsMeta(district);
 
   // Committed results take priority; Firestore is used only when a district has
-  // no committed list. Placeholder rows are the final fallback.
+  // no committed list. Districts with no results at all show the pending
+  // message instead of placeholder names.
+  const loading = !usingStatic && rows === null;
   const live = !usingStatic && Array.isArray(rows) && rows.length > 0;
+  const pending = meta.pending || (!loading && !live);
   const results = live
     ? rows.map((student, index) => ({
         id: `${list}-${index + 1}`,
@@ -48,7 +55,7 @@ export default function ResultsList() {
         school: student.school,
         marks: student.marks,
       }))
-    : getResults(info.name, list, district);
+    : [];
 
   // Rank by marks (highest first). Equal marks keep their original order.
   const orderedResults = [...results].sort(
@@ -81,7 +88,9 @@ export default function ResultsList() {
             {LABELS[list]} — {info.name}
           </h1>
           <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
-            Verified by the Examination Coordinator
+            {meta.pending
+              ? "Results pending"
+              : "Verified by the Examination Coordinator"}
           </p>
           {meta.note ? (
             <p className="mt-6 border-l-2 border-brand-sienna bg-white px-5 py-4 text-sm font-semibold leading-relaxed text-brand-navy">
@@ -94,46 +103,56 @@ export default function ResultsList() {
           className="reveal mt-16"
           style={{ animationDelay: "150ms" }}
         >
-          <div className="overflow-hidden border border-brand-navy/15 bg-white">
-            <ol className="divide-y divide-brand-navy/15">
-              {orderedResults.map((item, index) => (
-                <li
-                  key={item.id ?? `${list}-${index}`}
-                  className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-                >
-                  <div className="flex items-center gap-6">
-                    <span className="font-serif text-2xl font-bold text-brand-navy/40">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <p className="text-base font-extrabold text-brand-navy">
-                        {item.name}
-                      </p>
-                      {item.school ? (
-                        <p className="mt-0.5 text-sm text-brand-navy/70">
-                          {item.school}
+          {pending ? (
+            <div className="border border-brand-navy/15 bg-white px-6 py-12 text-center sm:px-10">
+              <p className="mx-auto max-w-2xl text-lg font-semibold leading-relaxed text-brand-navy">
+                {PENDING_RESULTS_MESSAGE}
+              </p>
+            </div>
+          ) : loading ? (
+            <div className="border border-brand-navy/15 bg-white px-6 py-12 text-center">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-slate">
+                Loading results…
+              </p>
+            </div>
+          ) : (
+            <div className="overflow-hidden border border-brand-navy/15 bg-white">
+              <ol className="divide-y divide-brand-navy/15">
+                {orderedResults.map((item, index) => (
+                  <li
+                    key={item.id ?? `${list}-${index}`}
+                    className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                  >
+                    <div className="flex items-center gap-6">
+                      <span className="font-serif text-2xl font-bold text-brand-navy/40">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <p className="text-base font-extrabold text-brand-navy">
+                          {item.name}
                         </p>
-                      ) : null}
+                        {item.school ? (
+                          <p className="mt-0.5 text-sm text-brand-navy/70">
+                            {item.school}
+                          </p>
+                        ) : null}
+                      </div>
                     </div>
-                  </div>
-                  {meta.showMarks && item.marks != null ? (
-                    <p className="flex items-baseline gap-2 sm:justify-end">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-slate">
-                        Marks
-                      </span>
-                      <span className="text-lg font-extrabold text-brand-navy">
-                        {item.marks}
-                      </span>
-                    </p>
-                  ) : !usingStatic && !live ? (
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
-                      Placeholder
-                    </p>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-          </div>
+                    {meta.showMarks && item.marks != null ? (
+                      <p className="flex items-baseline gap-2 sm:justify-end">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-brand-slate">
+                          Marks
+                        </span>
+                        <span className="text-lg font-extrabold text-brand-navy">
+                          {item.marks}
+                        </span>
+                      </p>
+                    ) : null}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
         </div>
       </div>
     </section>

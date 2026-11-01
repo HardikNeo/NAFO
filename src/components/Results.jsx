@@ -1,6 +1,10 @@
 import { Link, useParams, Navigate } from "react-router-dom";
 import { getDistrict } from "../lib/progress.js";
-import { getResultsMeta, getResultSchools } from "../lib/resultsData.js";
+import {
+  PENDING_RESULTS_MESSAGE,
+  getResultsMeta,
+  getResultSchools,
+} from "../lib/resultsData.js";
 
 const lists = [
   {
@@ -56,7 +60,9 @@ export default function Results() {
             Results — {info.name}
           </h1>
           <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
-            Verified by the Examination Coordinator
+            {meta.pending
+              ? "Results pending"
+              : "Verified by the Examination Coordinator"}
           </p>
           {schools.length > 0 ? (
             <p className="mt-4 text-sm font-semibold text-brand-navy/70">
@@ -70,38 +76,49 @@ export default function Results() {
           ) : null}
         </header>
 
-        <div
-          className="reveal mt-16 grid gap-6 lg:grid-cols-2"
-          style={{ animationDelay: "150ms" }}
-        >
-          {lists.map((list) => (
-            <Link
-              key={list.key}
-              to={`${resultsPath}/${list.key}`}
-              className="group border border-brand-navy/15 bg-white p-10 transition-colors hover:bg-brand-cream"
-            >
-              <h2 className="text-2xl font-extrabold text-brand-navy transition-colors group-hover:text-brand-sienna">
-                {list.label}
-              </h2>
-              <p className="mt-4 leading-relaxed text-brand-navy/70">
-                {list.description}
-              </p>
-              <span className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-teal transition-colors group-hover:text-brand-sienna">
-                View list
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
-            </Link>
-          ))}
-        </div>
+        {meta.pending ? (
+          <div
+            className="reveal mt-16 border border-brand-navy/15 bg-white px-6 py-12 text-center sm:px-10"
+            style={{ animationDelay: "150ms" }}
+          >
+            <p className="mx-auto max-w-2xl text-lg font-semibold leading-relaxed text-brand-navy">
+              {PENDING_RESULTS_MESSAGE}
+            </p>
+          </div>
+        ) : (
+          <div
+            className="reveal mt-16 grid gap-6 lg:grid-cols-2"
+            style={{ animationDelay: "150ms" }}
+          >
+            {lists.map((list) => (
+              <Link
+                key={list.key}
+                to={`${resultsPath}/${list.key}`}
+                className="group border border-brand-navy/15 bg-white p-10 transition-colors hover:bg-brand-cream"
+              >
+                <h2 className="text-2xl font-extrabold text-brand-navy transition-colors group-hover:text-brand-sienna">
+                  {list.label}
+                </h2>
+                <p className="mt-4 leading-relaxed text-brand-navy/70">
+                  {list.description}
+                </p>
+                <span className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-teal transition-colors group-hover:text-brand-sienna">
+                  View list
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
