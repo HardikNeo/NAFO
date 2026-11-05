@@ -12,6 +12,7 @@ Organized by purpose:
 | `jumla/`      | Jumla district photos                                 |
 | `kailali/`    | Dhangadhi (Kailali) district photos                   |
 | `kathmandu/`  | Kathmandu Valley district photos                      |
+| `kavre/`      | Kavre district photos                                 |
 
 District photos are loaded automatically by `src/lib/progress.js` from their
 district folder. Team and homepage photos are imported directly by the

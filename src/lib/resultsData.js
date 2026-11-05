@@ -116,7 +116,23 @@ export const resultsData = {
   },
   parsa: { showMarks: false, pending: true },
   morang: { showMarks: false, pending: true },
-  kavre: { showMarks: false, pending: true },
+  kavre: {
+    showMarks: true,
+    selected: [
+      student("Adwait Dhoju", 30.5),
+      student("Adarsha Wagle", 30),
+      student("Prajwal Ghimire", 27.5),
+    ],
+    waitlisted: [
+      student("Avinav Mahat", 23),
+      student("Aditya Sign Rajput", 23),
+      student("Sushan Shah", 22.5),
+      student("Bidhi Badal", 22.5),
+      student("Pradyush Jung K.C", 20),
+      student("Sulav C Shrestha", 18),
+      student("Rijesh Ranjit", 17.5),
+    ],
+  },
 };
 
 export function getStaticResults(slug) {
