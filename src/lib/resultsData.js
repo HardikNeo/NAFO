@@ -115,7 +115,29 @@ export const resultsData = {
     ],
   },
   parsa: { showMarks: false, pending: true },
-  morang: { showMarks: false, pending: true },
+  morang: {
+    showMarks: false,
+    ranked: true,
+    selected: [
+      student("Prajwal BK", 13),
+      student("Soni Rai", 10),
+      student("Prajwal Basnet", 9.5),
+      student("Devendra Kumar Dev", 7.5),
+      student("Aditya Yadav", 7.5),
+      student("Aayush Yadav", 5),
+      student("Ritika Khawas", 5),
+      student("Aroshi Kri. Sardar", 5),
+      student("Parina Kumari Thakur", 5),
+      student("Bimal Phuyal", 5),
+      student("Pratima Kumari Sardar", 2.5),
+      student("Lokesh Rai", 2.5),
+      student("Aarti Shrestha", 2.5),
+      student("Nimtee Rai", 0.5),
+      student("Aashraf Ali", 0),
+      student("Aarya Rijal", -2),
+    ],
+    waitlisted: [],
+  },
   kavre: {
     showMarks: true,
     selected: [
@@ -166,6 +188,7 @@ export function getResultsMeta(slug) {
   const data = resultsData[slug];
   return {
     showMarks: data?.showMarks !== false,
+    ranked: data?.ranked === true,
     note: data?.note ?? "",
     pending: data?.pending === true,
   };
