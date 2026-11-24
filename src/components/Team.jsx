@@ -25,6 +25,7 @@ const teamRows = [
     { name: "Supreeti", role: "Outreach Officer" },
     { name: "Pranay Singh", role: "Logistics Manager" },
     { name: "Abinash Poudel", role: "Research Analyst" },
+    { name: "Sadbhab Timilsina", role: "Financial Analyst" },
   ],
   [
     {
