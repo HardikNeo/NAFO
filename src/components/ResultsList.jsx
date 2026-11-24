@@ -16,10 +16,7 @@ export default function ResultsList() {
   const { district, list } = useParams();
   const info = getDistrict(district);
   const meta = getResultsMeta(district);
-  const valid =
-    Boolean(info) &&
-    Boolean(LABELS[list]) &&
-    (!meta.ranked || list === "selected");
+  const valid = Boolean(info) && Boolean(LABELS[list]);
   const staticRows = valid ? getStaticRows(district, list) : null;
   const usingStatic = Array.isArray(staticRows) && staticRows.length > 0;
   const [rows, setRows] = useState(null);
@@ -87,16 +84,10 @@ export default function ResultsList() {
         <header className="reveal mt-12 max-w-3xl" style={{ animationDelay: "100ms" }}>
           <span className="kicker">{info.province}</span>
           <h1 className="mt-5 text-4xl font-black tracking-tight text-brand-navy sm:text-5xl">
-            {meta.ranked && list === "selected"
-              ? `Ranked Results — ${info.name}`
-              : `${LABELS[list]} — ${info.name}`}
+            {LABELS[list]} — {info.name}
           </h1>
           <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
-            {meta.pending
-              ? "Results pending"
-              : meta.ranked
-                ? "Ranked by marks"
-                : "Verified by the Examination Coordinator"}
+            {meta.pending ? "Results pending" : "Verified by the Examination Coordinator"}
           </p>
           {meta.note ? (
             <p className="mt-6 border-l-2 border-brand-sienna bg-white px-5 py-4 text-sm font-semibold leading-relaxed text-brand-navy">

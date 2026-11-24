@@ -117,11 +117,12 @@ export const resultsData = {
   parsa: { showMarks: false, pending: true },
   morang: {
     showMarks: false,
-    ranked: true,
     selected: [
       student("Prajwal BK", 13),
       student("Soni Rai", 10),
       student("Prajwal Basnet", 9.5),
+    ],
+    waitlisted: [
       student("Devendra Kumar Dev", 7.5),
       student("Aditya Yadav", 7.5),
       student("Aayush Yadav", 5),
@@ -136,7 +137,6 @@ export const resultsData = {
       student("Aashraf Ali", 0),
       student("Aarya Rijal", -2),
     ],
-    waitlisted: [],
   },
   kavre: {
     showMarks: true,
@@ -188,7 +188,6 @@ export function getResultsMeta(slug) {
   const data = resultsData[slug];
   return {
     showMarks: data?.showMarks !== false,
-    ranked: data?.ranked === true,
     note: data?.note ?? "",
     pending: data?.pending === true,
   };

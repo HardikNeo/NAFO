@@ -33,15 +33,6 @@ export default function Results() {
   const resultsPath = `${districtPath}/results`;
   const meta = getResultsMeta(district);
   const schools = getResultSchools(district);
-  const visibleLists = meta.ranked
-    ? [
-        {
-          key: "selected",
-          label: "Ranked Results",
-          description: `View the ${info.name} results in rank order.`,
-        },
-      ]
-    : lists;
 
   return (
     <section id="results" className="section-anchor bg-brand-cream">
@@ -69,11 +60,7 @@ export default function Results() {
             Results — {info.name}
           </h1>
           <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-brand-slate">
-            {meta.pending
-              ? "Results pending"
-              : meta.ranked
-                ? "Ranked by marks"
-                : "Verified by the Examination Coordinator"}
+            {meta.pending ? "Results pending" : "Verified by the Examination Coordinator"}
           </p>
           {schools.length > 0 ? (
             <p className="mt-4 text-sm font-semibold text-brand-navy/70">
@@ -101,7 +88,7 @@ export default function Results() {
             className="reveal mt-16 grid gap-6 lg:grid-cols-2"
             style={{ animationDelay: "150ms" }}
           >
-            {visibleLists.map((list) => (
+            {lists.map((list) => (
               <Link
                 key={list.key}
                 to={`${resultsPath}/${list.key}`}
